@@ -1,0 +1,11 @@
+{
+  "title": "🎭 **Opt-in roles**",
+  "intro": "React below to get a role, remove your reaction to drop it.\nIt can take up to ~15 minutes to update.",
+  "roles": [
+    {
+      "emoji": "🎯",
+      "role": "accountability",
+      "description": "get pinged when someone needs a push or a target date passes in #goals"
+    }
+  ]
+}

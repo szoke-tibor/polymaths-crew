@@ -1,0 +1,34 @@
+name: roles sync
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # every 5 min (GitHub may delay scheduled runs)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only print, don't change anything"
+        type: boolean
+        default: false
+
+concurrency:
+  group: roles-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: discord/bots/roles-bot
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python roles_bot.py
+        env:
+          DISCORD_TOKEN: ${{ secrets.ROLES_BOT_DISCORD_TOKEN }}
+          GUILD_ID: "1541511985760313485"     # Polymaths Crew
+          CHANNEL_ID: "1567279105810890894"   # #roles
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
