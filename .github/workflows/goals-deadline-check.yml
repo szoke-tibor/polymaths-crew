@@ -1,0 +1,30 @@
+name: goals deadline check
+
+on:
+  schedule:
+    - cron: "0 8 * * *"   # daily 08:00 UTC = 09:00 Budapest (10:00 in summer)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only print, don't post"
+        type: boolean
+        default: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: discord/bots/goals-bot
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python goals_bot.py
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          GUILD_ID: ${{ vars.GUILD_ID }}
+          CHANNEL_ID: ${{ vars.CHANNEL_ID }}
+          ROLE_ID: ${{ vars.ROLE_ID }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
