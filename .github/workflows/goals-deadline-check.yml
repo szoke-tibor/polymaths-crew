@@ -17,11 +17,8 @@ jobs:
       run:
         working-directory: discord/bots/goals-bot
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: python goals_bot.py
+      - uses: actions/checkout@v5
+      - run: python3 goals_bot.py
         env:
           DISCORD_TOKEN: ${{ secrets.GOALS_BOT_DISCORD_TOKEN }}
           GUILD_ID: "1541511985760313485"     # Polymaths Crew

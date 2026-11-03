@@ -22,11 +22,8 @@ jobs:
       run:
         working-directory: discord/bots/roles-bot
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: python roles_bot.py
+      - uses: actions/checkout@v5
+      - run: python3 roles_bot.py
         env:
           DISCORD_TOKEN: ${{ secrets.ROLES_BOT_DISCORD_TOKEN }}
           GUILD_ID: "1541511985760313485"     # Polymaths Crew
