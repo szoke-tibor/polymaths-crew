@@ -10,7 +10,8 @@ Stdlib only (Python 3.9+). Config via environment variables:
   DISCORD_TOKEN   bot token (required)
   GUILD_ID        server id (required)
   CHANNEL_ID      #goals forum channel id (required)
-  ROLE_ID         @accountability role id (optional; no role ping if empty)
+  ROLE_ID         @accountability role id (optional; if empty, looked up by ROLE_NAME)
+  ROLE_NAME       role name to ping (default: "accountability")
   DONE_TAG        name fragment of the "done" tag (default: "Done")
   TIMEZONE        timezone for "today" (default: Europe/Budapest)
   DRY_RUN         "1" = only print what would be posted
@@ -110,6 +111,12 @@ def main():
 
     dc = Discord(token)
     me = dc.call("GET", "/users/@me")
+    if not role_id:
+        role_name = os.environ.get("ROLE_NAME", "accountability").lower()
+        roles = dc.call("GET", f"/guilds/{guild_id}/roles") or []
+        role_id = next((r["id"] for r in roles if r["name"].lower() == role_name), "")
+        if not role_id:
+            print(f"WARNING: role '{role_name}' not found, pinging authors only")
     forum = dc.call("GET", f"/channels/{channel_id}")
     if not forum:
         sys.exit(f"Channel {channel_id} not found or bot can't see it")
