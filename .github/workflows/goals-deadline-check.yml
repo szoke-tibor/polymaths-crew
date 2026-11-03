@@ -23,7 +23,7 @@ jobs:
           python-version: "3.12"
       - run: python goals_bot.py
         env:
-          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_TOKEN: ${{ secrets.GOALS_BOT_DISCORD_TOKEN }}
           GUILD_ID: ${{ vars.GUILD_ID }}
           CHANNEL_ID: ${{ vars.CHANNEL_ID }}
           ROLE_ID: ${{ vars.ROLE_ID }}

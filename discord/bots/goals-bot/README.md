@@ -17,7 +17,7 @@ has no **✅ Done** tag, the bot replies in that post once, pinging the author a
    *Copy ID* on the server, the `#goals` channel and the role.
 5. **GitHub** (run in the polymaths-crew repo; workflow: `.github/workflows/goals-deadline-check.yml`):
    ```sh
-   gh secret set DISCORD_TOKEN          # paste token when asked
+   gh secret set GOALS_BOT_DISCORD_TOKEN   # paste token when asked
    gh variable set GUILD_ID   --body <server id>
    gh variable set CHANNEL_ID --body <#goals id>
    gh variable set ROLE_ID    --body <role id>
