@@ -25,6 +25,6 @@ jobs:
         env:
           DISCORD_TOKEN: ${{ secrets.GOALS_BOT_DISCORD_TOKEN }}
           GUILD_ID: ${{ vars.GUILD_ID }}
-          CHANNEL_ID: ${{ vars.CHANNEL_ID }}
-          ROLE_ID: ${{ vars.ROLE_ID }}
+          CHANNEL_ID: ${{ vars.GOALS_CHANNEL_ID }}
+          ROLE_ID: ${{ vars.ACCOUNTABILITY_ROLE_ID }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}

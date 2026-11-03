@@ -19,8 +19,8 @@ has no **✅ Done** tag, the bot replies in that post once, pinging the author a
    ```sh
    gh secret set GOALS_BOT_DISCORD_TOKEN   # paste token when asked
    gh variable set GUILD_ID   --body <server id>
-   gh variable set CHANNEL_ID --body <#goals id>
-   gh variable set ROLE_ID    --body <role id>
+   gh variable set GOALS_CHANNEL_ID --body <#goals id>
+   gh variable set ACCOUNTABILITY_ROLE_ID --body <role id>
    ```
 6. Test: Actions → *goals deadline check* → Run workflow with **dry run** ticked.
 
