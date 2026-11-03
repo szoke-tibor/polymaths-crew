@@ -126,7 +126,10 @@ def ensure_message(dc, channel_id, me_id, content, emojis, dry_run):
 
 
 def main():
-    token = os.environ["DISCORD_TOKEN"]
+    token = os.environ.get("DISCORD_TOKEN", "").strip()
+    if not token:
+        print("DISCORD_TOKEN not set (ROLES_BOT_DISCORD_TOKEN secret missing), skipping")
+        return
     guild_id = os.environ["GUILD_ID"]
     channel_id = os.environ["CHANNEL_ID"]
     dry_run = os.environ.get("DRY_RUN") == "1"
